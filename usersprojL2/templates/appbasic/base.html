@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <ul class="nav navbar">
+          <li><a class="navbar-brand" href="{% url 'index'%}">Home</a> </li>
+          <li><a class="nav-link" href="{% url 'admin:index'%}">Admin</a> </li>
+          <li><a class="nav-link" href="{% url 'appbasic:register'%}">Register</a> </li>
+
+          {% if user.is_authenticated %}
+            <li><a class="nav-link" href="{% url 'logout_site'%}">Logout</a> </li>
+            {% else %}
+              <li><a class="nav-link" href="{% url 'appbasic:login_site'%}">Login</a> </li>
+
+          {% endif %}
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block body_block %}
+
+      <!-- Anything outside of this will be inherited if you extend! -->
+      {% endblock %}
+    </div>
+
+
+  </body>
+  </html>
